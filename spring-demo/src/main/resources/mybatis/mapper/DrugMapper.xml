@@ -1,0 +1,7 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springdemo.mapper.DrugMapper">
+<select id="findbyname" parameterType="string" resultType="com.example.springdemo.pojo.Drug">
+	select * from drug where drugname='#{value}'
+</select>
+
+</mapper>

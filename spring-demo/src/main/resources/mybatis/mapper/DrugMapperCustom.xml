@@ -1,0 +1,25 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springdemo.mapper.DrugMapperCustom">
+<sql id="query_drugs_where">
+<if test="drugCustom!=null">
+<if test="drugCustom.drugname!=null and drugCustom.drugname!=''">
+	drug.drugname like '%${drugCustom.drugname}%'
+</if>
+</if>
+</sql>
+<select id="findall" parameterType="com.example.springdemo.pojo.DrugQueryVo" resultType="com.example.springdemo.pojo.DrugCustom">
+select * from drug
+<where>
+<include refid="query_drugs_where"></include>
+</where>
+</select>
+<select id="findDrugByName" parameterType="string" resultType="com.example.springdemo.pojo.DrugCustom">
+select * from drug where drug.drugname like '%${value}%'
+
+</select>
+<delete id="deleteById" parameterType="int">
+delete from drug where drugid=#{drugid}
+</delete>
+
+
+</mapper>
